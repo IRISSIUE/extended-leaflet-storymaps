@@ -3,6 +3,10 @@
 
 This repo is a fork of Jack Dougherty and Ilya Ilyankou's Leaflet Storymaps with Google Sheets, from their book *Hands-On Data Visualization*. Their full documentation is below. This fork contains extended documentation and customizations developed for the IRIS Center for Digital Humanities at Southern Illinois University Edwardsville.
 
+## Contents
+* Customizing Markers
+* Customizing Fonts
+
 ## Customizing Markers
 The data entry spreadsheet offers some options for customizing markers: color, display, and content (e.g. numbers or letters). However, the underlying code allows for significantly more customization. Note that the current version of the storymap uses an old version of the Leaflet ExtraMarkers extension, and updating the markers requires utilizing the [previous version of their documentation](https://github.com/coryasilva/Leaflet.ExtraMarkers/tree/c4f5f1e4184194b584ef112a609af7a1f91db172).
 
@@ -43,6 +47,41 @@ Changes to the active marker happen in `css > style.css`:
 }
 ```
 The `background-position` property contains the coordinates in the picture of the marker you'd like to use. Once you've selected your marker, consult the [CSS reference](https://github.com/coryasilva/Leaflet.ExtraMarkers/blob/c4f5f1e4184194b584ef112a609af7a1f91db172/src/assets/img/markers_default.png) to find the appropriate coordinates.
+
+## Customizing Fonts
+
+Swapping out the fonts requires making changes to `index.html` and to `css/style.css`. 
+
+### 1. Choose your fonts.
+
+Go to Google Fonts and select the fonts you'd like to add to your project. You can add multiple fonts at a time. When you find a font you'd like to use, click the green "Get Font" button in the top right of the page. You can keep searching, and it will store all your choices for when you're ready to export them. 
+
+When you're done choosing fonts, click on the shopping bag in the top right corner to view all your selections. Click the blue "Get embed code" button on the right of the page. 
+
+### 2. Edit index.html
+
+In a separate tab, open your `index.html` file and click the pencil icon to edit it. From Google Fonts, copy the embed code designated for the <head> of your HTML document. In your `index.html` file, add a new line after `<title>Leaflet Storymaps with Google Sheets Template</title>` and paste it there. Click the green "Commit changes" button to save your changes. (Remember to click it again in the dialog box that pops up.)
+
+### 3. Edit css/style.css
+
+Open up `style.css` in the `css` directory. You'll need to update each element individually.
+* Body text: By default, this is set to Helvetica. If you're changing the body font (which will update the chapter text and captions), find the `body` `font-family` declaration:
+```
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Helvetica", sans-serif;
+  overflow: hidden;
+}
+```
+Copy the `font-family` declaration for the appropriate font from your Google Fonts embed page. This will be in the individual font's CSS class block (for example, `font-family: "Aladin", system-ui;`).
+* Title: To style your story title, search for `#title` and follow the same steps, substituting the appropriate font.
+* Chapter titles: These are styled under `.chapter-header`.
+* You can also style all headers throughout the storymap by updating `h1`, `h2`, etc.
+* As you change fonts, you may find that you also want to change font sizes. In the storymap, these are styled using *em* units, which are relative units, where the number multiplies the original font size. (1.5em is one and a half times the size of 1em; 2em is double.) This helps to keep everything proportionate.
+* Other changes, like color, can be made in the spreadsheet.
+
+Commit your changes. If you are hosting via GitHub Pages, it will take a few minutes for your site to update. (NB: The more commits you make in a session, the longer your live site will take to update each time.)
 
 # [Leaflet Storymaps with Google Sheets: Original Documentation](https://www.github.com/handsondataviz/leaflet-storymaps-with-google-sheets)
 *Jack Dougherty and Ilya Ilyankou*
